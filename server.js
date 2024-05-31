@@ -6,6 +6,8 @@ const bodyParser = require('body-parser')
 const swaggerDocs = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
 const mongoose = require('mongoose')
+const AuthRouter = require('./routes/auth.route')
+const MapRouter = require('./routes/map.route')
 
 const options = {
     explorer: true,
@@ -33,6 +35,8 @@ app.use('/api', swaggerUI.serve, swaggerUI.setup(specs))
 app.use(cors({origin: '*'}))
 app.use(bodyParser.urlencoded({extended: true, limit: '50mb'}))
 app.use(bodyParser.json({limit:'50mb'}));
+app.use('/auth', AuthRouter)
+app.use('/map', MapRouter)
 
 mongoose.connect(process.env.URI).then(res=>{
     console.log('Mongo DB connected successfully')
