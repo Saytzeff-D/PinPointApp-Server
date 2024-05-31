@@ -53,5 +53,3 @@ const filterRestaurant = (req, res)=>{
 }
 
 module.exports = { filterRestaurant }
-
-// https://api.geoapify.com/v2/places?categories=catering.restaurant&bias=proximity:-0.07071648508463113,51.50848194136378&limit=20&apiKey=252d3a5bad3b47bd9876e4bde945435d
