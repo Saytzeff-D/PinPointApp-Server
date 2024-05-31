@@ -12,26 +12,37 @@ const transporter = nodemailer.createTransport({
 
 const mailOption = (code, email)=>{
     return {
-        from: process.env.SITE_EMAIL,
+        from: `PinPoint ${process.env.SITE_EMAIL}`,
         to: email,
-        subject: 'PinPoint Confirmation Code',
+        subject: `${code} is your PinPoint Verification Code`,
         html: `
-            <center>
-                <div>
-                    <img src='https://res.cloudinary.com/ololadedavid15/image/upload/v1692619465/9jaWivesLogo_yd0gtl.png' />
+            <center style='font-size: large;'>
+                <div style='flex:0 0 auto; width:66.666666%'>
+                    <center style='margin-bottom: 25px;'>
+                        <img src='https://res.cloudinary.com/ololadedavid15/image/upload/v1717169049/pinpoint_logo-removebg-preview_tsqnia.png' />
+                    </center>
+                    <div style='text-align: left'>
+                        <b>Here's your verification code</b>
+                    </div>
+                    <p style='text-align: left'>
+                        Hi!
+                    </p>
+                    <p style='text-align: left'>
+                        Please use this OTP to verify your account:
+                    </p>
+                    <h1 style='color: #223C73; letter-spacing: 4px;'>
+                        ${code}
+                    </h1>
+                    <p style='text-align: left'>
+                        For security purposes, please do not share this code with anyone.
+                    </p>
+                    <p style='text-align: left'>
+                        Regards,
+                    </p>
+                    <p style='text-align: left'>
+                        The PinPoint Team
+                    </p>
                 </div>
-                <div>
-                    <b>PinPoint
-                </div>
-                <p>
-                    <strong>Confirmation Code</strong>
-                </p>
-                <h1 style='color: #E2A54C;'>
-                    ${code}
-                </h1>
-                <p>
-                    <b>Kindly enter the code to verify your email address.</b>
-                </p>
             </center>
         `
     }
