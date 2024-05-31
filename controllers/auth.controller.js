@@ -108,8 +108,8 @@ const { transporter, mailOption } = require('../mailer');
 
 const register = async (req, res)=>{
     let payload  = req.body
-    const hashedPassword = await bcrypt.hash(payload.password, 10);
-    if (req.body.type == 'PARTNER' || 'USER') {
+    if (req.body.type == 'PARTNER' || req.body.type == 'USER') {        
+        const hashedPassword = await bcrypt.hash(payload.password, 10);
         UserModel.findOne({email: payload.email}).then(result=>{
             if (!result) {
                 payload.password = hashedPassword

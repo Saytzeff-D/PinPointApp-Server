@@ -46,7 +46,15 @@ const filterRestaurant = (req, res)=>{
     axios.get(
         `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${payload.longitude},${payload.latitude},${payload.distance}&bias=proximity:${payload.longitude},${payload.latitude}&limit=20&apiKey=${process.env.MAP_API_KEY}`
     ).then(result=>{
-        return res.status(200).json({data: result.data.features})
+        let restaurants = []
+        result.data.features.length !== 0
+        ?
+        result.data.features.map((each)=>{
+            restaurants = [...restaurants, each.properties]
+        })
+        :
+        restaurants = []
+        return res.status(200).json({restaurants})
     }).catch(err=>{        
         res.status(500).json({message: 'Internal Server Error'})
     })

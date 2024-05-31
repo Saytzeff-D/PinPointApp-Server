@@ -38,6 +38,8 @@ app.use(bodyParser.json({limit:'50mb'}));
 app.use('/auth', AuthRouter)
 app.use('/map', MapRouter)
 
+app.get('/', (req, res)=>res.send('PinPoint API is Live'))
+
 mongoose.connect(process.env.URI).then(res=>{
     console.log('Mongo DB connected successfully')
 }).catch(err=>{
