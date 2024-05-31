@@ -11,7 +11,9 @@ const UserSchema = mongoose.Schema({
     city: String,
     email: String,
     password: String,
-    type: String
+    type: String,
+    otp: String,
+    verified: { type: Boolean, default: false }
 })
 
 const UserModel = mongoose.model('user_tbs', UserSchema)
