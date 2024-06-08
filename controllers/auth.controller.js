@@ -164,13 +164,17 @@ const login = (req, res)=>{
         if (!result) {
             res.status(300).json({message: 'User does not exist'})
         } else {
-            bcrypt.compare(payload.password, result.password).then(same=>{
-                if (same) {
-                    generateJwt(result)
-                } else {
-                    res.status(300).json({message: 'Incorrect Password'})
-                }
-            }).catch()
+            if (result.verified) {
+                bcrypt.compare(payload.password, result.password).then(same=>{
+                    if (same) {
+                        generateJwt(result)
+                    } else {
+                        res.status(300).json({message: 'Incorrect Password'})
+                    }
+                }).catch(()=> res.status(500).json({message: 'Internal Server Error'}))
+            } else {
+                res.status(300).json({message: 'Kindly Verify your E-Mail Address'})
+            }
         }
     }).catch(err=>{
         res.status(500).json({message: 'Internal Server Error'})
