@@ -52,6 +52,27 @@ const { transporter, mailOption } = require('../mailer');
 /**
  * @swagger
  * tags:
+ *  name: BaseURL
+ *  description: This is the root and base address for the rest of the endpoints
+*/
+
+/**
+ * @swagger
+ * /:
+ *  get:
+ *    summary: the umbrella under which an entire server resides
+ *    tags: [BaseURL]
+ *    responses:
+ *      200:
+ *        description: Server is Live
+ *      500:
+ *        description: Internal Server Error 
+ *    
+ */
+
+/**
+ * @swagger
+ * tags:
  *  name: Auth
  *  description: The user authentication API
 */
