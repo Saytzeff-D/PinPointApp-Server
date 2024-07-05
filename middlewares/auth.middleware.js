@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken')
+
 const authenticate = (req, res, next)=>{
     const splitJWT = req.headers.authorization
     if (splitJWT) {
